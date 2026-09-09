@@ -41,44 +41,50 @@ dotnet restore
 dotnet run
 ```
 
-###Windows is required because this is a WinForms application.
-              UBL CUSTOMER DATA
-                     │
-                     ▼
-              Excel File
-                     │
-                     ▼
-             ExcelService.cs
-             "Excel read karo"
-                     │
-                     ▼
-              Customer.cs
-          "Customer objects banao"
-                     │
-                     ▼
-          SimulationEngine.cs
-             "Simulation chalao"
-                     │
-        ┌────────────┴────────────┐
-        ▼                         ▼
-   PART A                      PART B
- Trace Driven                  M/M/1
- Simulation                   Analytical
-        │                         │
-        ▼                         ▼
- Arrival                    Lambda (λ)
- Service                    Mu (μ)
- Waiting                    Rho (ρ)
- Queue                      Lq, Wq, W, L
-        │                         │
-        └────────────┬────────────┘
-                     ▼
-             SimulationResult.cs
-                "Results"
-                     │
-                     ▼
-                MainForm.cs
-                     │
-            ┌────────┴────────┐
-            ▼                 ▼
-          Screen            Excel
+    ## 🏗️ System Architecture & Data Flow
+
+```text
+                    UBL CUSTOMER DATA
+                           │
+                           ▼
+                      Excel File
+                           │
+                           ▼
+                    ExcelService.cs
+                    "Read Excel Data"
+                           │
+                           ▼
+                       Customer.cs
+                  "Create Customer Objects"
+                           │
+                           ▼
+                  SimulationEngine.cs
+                     "Run Simulation"
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+           PART A                    PART B
+      Trace-Driven Simulation      M/M/1 Analytical
+              │                         │
+              ▼                         ▼
+        ┌──────────────┐          ┌──────────────┐
+        │ Arrival Time │          │ Lambda (λ)   │
+        │ Service Time │          │ Mu (μ)       │
+        │ Waiting Time │          │ Rho (ρ)      │
+        │ Queue Length │          │ Lq, Wq, W, L │
+        └──────────────┘          └──────────────┘
+              │                         │
+              └────────────┬────────────┘
+                           ▼
+                  SimulationResult.cs
+                      "Store Results"
+                           │
+                           ▼
+                      MainForm.cs
+                           │
+                    ┌──────┴──────┐
+                    │             │
+                    ▼             ▼
+                  Screen       Excel Export
+    
