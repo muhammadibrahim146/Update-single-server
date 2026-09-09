@@ -41,5 +41,44 @@ dotnet restore
 dotnet run
 ```
 
-Windows is required because this is a WinForms application.
-
+###Windows is required because this is a WinForms application.
+              UBL CUSTOMER DATA
+                     │
+                     ▼
+              Excel File
+                     │
+                     ▼
+             ExcelService.cs
+             "Excel read karo"
+                     │
+                     ▼
+              Customer.cs
+          "Customer objects banao"
+                     │
+                     ▼
+          SimulationEngine.cs
+             "Simulation chalao"
+                     │
+        ┌────────────┴────────────┐
+        ▼                         ▼
+   PART A                      PART B
+ Trace Driven                  M/M/1
+ Simulation                   Analytical
+        │                         │
+        ▼                         ▼
+ Arrival                    Lambda (λ)
+ Service                    Mu (μ)
+ Waiting                    Rho (ρ)
+ Queue                      Lq, Wq, W, L
+        │                         │
+        └────────────┬────────────┘
+                     ▼
+             SimulationResult.cs
+                "Results"
+                     │
+                     ▼
+                MainForm.cs
+                     │
+            ┌────────┴────────┐
+            ▼                 ▼
+          Screen            Excel
